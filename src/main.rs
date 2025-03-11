@@ -4,10 +4,15 @@ use dioxus_desktop::Config;
 fn main() {
     let css = include_str!("style.css");
 
-    let config = Config::new().with_custom_head(format!(
-        "<style>{}</style>",
-        css
-    ));
+    let window_title = "Explora Browser";
+
+    let config = Config::new()
+        .with_custom_head(format!(
+            "<style>{}</style>",
+            css
+        ))
+
+        .with_window(dioxus_desktop::WindowBuilder::new().with_title(window_title));
 
     dioxus_desktop::launch_cfg(app, config);
 }
