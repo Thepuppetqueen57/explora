@@ -1,7 +1,15 @@
 use dioxus::prelude::*;
+use dioxus_desktop::Config;
 
 fn main() {
-    dioxus_desktop::launch(app);
+    let css = include_str!("style.css");
+
+    let config = Config::new().with_custom_head(format!(
+        "<style>{}</style>",
+        css
+    ));
+
+    dioxus_desktop::launch_cfg(app, config);
 }
 
 fn app(cx: Scope) -> Element {
@@ -9,6 +17,10 @@ fn app(cx: Scope) -> Element {
         button {
             onclick: |_| println!("not done yet guys"),
             "explora"
+        }
+
+        h1 {
+            "hey"
         }
     ))
 }
