@@ -20,16 +20,19 @@ fn main() {
 fn app(cx: Scope) -> Element {
     let searching = use_state(&cx, || false);
     cx.render(rsx!(
-        form {
-            onsubmit: move |event| {
-                println!("Submitted! {:?}", event.values);
-                searching.set(true);
-            },
-            input { name: "search" }
-            input { r#type: "submit", value: "search" }
-            {searching.then(|| rsx!(
-                h1 { "Searching.." }
-            ))}
+        div {
+            class: "search-div",
+            form {
+                onsubmit: move |event| {
+                    println!("Submitted! {:?}", event.values);
+                    searching.set(true);
+                },
+                input { name: "search" }
+                input { r#type: "submit", value: "search" }
+                {searching.then(|| rsx!(
+                    h1 { "Searching.." }
+                ))}
+            }
         }
     ))
 }

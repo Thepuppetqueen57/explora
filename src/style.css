@@ -5,3 +5,15 @@ body {
 h1, h2, p {
     color: white;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.search-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
