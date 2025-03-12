@@ -30,6 +30,6 @@ fn app(cx: Scope) -> Element {
             {searching.then(|| rsx!(
                 h1 { "Searching.." }
             ))}
-}))
-    
+        }
+    ))
 }
