@@ -18,14 +18,18 @@ fn main() {
 }
 
 fn app(cx: Scope) -> Element {
+    let searching = use_state(&cx, || false);
     cx.render(rsx!(
-        button {
-            onclick: |_| println!("not done yet guys"),
-            "explora"
-        }
-
-        h1 {
-            "hey"
-        }
-    ))
+        form {
+            onsubmit: move |event| {
+                println!("Submitted! {:?}", event.values);
+                searching.set(true);
+            },
+            input { name: "search" }
+            input { r#type: "submit", value: "search" }
+            {searching.then(|| rsx!(
+                h1 { "Searching.." }
+            ))}
+}))
+    
 }
