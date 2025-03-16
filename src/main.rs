@@ -27,6 +27,7 @@ fn app(cx: Scope) -> Element {
                 onsubmit: move |event| {
                     println!("Submitted! {:?}", event.values);
                     searching.set(true);
+                    on_new_tab.set(false);
                 },
                 input { name: "search" }
                 input { r#type: "submit", value: "search" }
