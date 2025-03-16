@@ -19,9 +19,10 @@ fn main() {
 
 fn app(cx: Scope) -> Element {
     let searching = use_state(&cx, || false);
+    let on_new_tab = use_state(&cx, || true);
     cx.render(rsx!(
         div {
-            class: "search-div",
+            class: if **on_new_tab { "search-div-new-tab" } else { "search-div" },
             form {
                 onsubmit: move |event| {
                     println!("Submitted! {:?}", event.values);
