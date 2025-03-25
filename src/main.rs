@@ -1,9 +1,9 @@
+use ez_reqwest::get_request;
 use raylib::prelude::*;
 
 mod types;
 mod funcs;
 use types::*;
-use funcs::*;
 
 #[tokio::main]
 async fn main() {
@@ -40,6 +40,7 @@ async fn main() {
 
     let mut on_new_tab: bool = true;
     let mut url: String = "".to_string();
+    let mut website: String = "".to_string();
 
     while !rl.window_should_close() {
         let delta_time = rl.get_frame_time();
@@ -49,8 +50,13 @@ async fn main() {
 
         search_button.update(&rl, delta_time);
 
-        if search_button.is_clicked(&rl) {
+        if search_button.is_clicked(&rl) && url.len() > 0 {
             on_new_tab = false;
+
+            website = get_request(
+                url.clone(),
+                None
+            ).await;
         }
 
         if url_bar.is_clicked(&rl) {
@@ -79,5 +85,9 @@ async fn main() {
         );
 
         url_bar.draw(url.clone(), &mut d);
+
+        if !on_new_tab {
+            d.draw_text(&website, 20, 100, 30, Color::WHITE);
+        }
     }
 }
