@@ -7,7 +7,6 @@ impl Button {
             rect: Rectangle::new(x, y, width, height),
             text: text.to_string(),
             font_size,
-            base_color: Color::WHITE,
             hover_scale: 1.0,
             press_offset: 0.0,
             is_pressed: false,

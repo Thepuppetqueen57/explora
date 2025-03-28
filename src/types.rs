@@ -4,7 +4,6 @@ pub struct Button {
     pub rect: Rectangle,
     pub text: String,
     pub font_size: i32,
-    pub base_color: Color,
     pub hover_scale: f32,
     pub press_offset: f32,
     pub is_pressed: bool,
